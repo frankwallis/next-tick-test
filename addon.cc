@@ -1,6 +1,7 @@
 #include <v8.h>
 #include <uv.h>
 #include <node.h>
+#include <unistd.h>
 
 using namespace v8;
 using namespace node;
@@ -11,7 +12,7 @@ struct AsyncRequest {
 };
 
 void DoAsync (uv_work_t* task) {
-	// nothing to do
+	sleep(1);
 }
 
 void AfterAsync (uv_work_t* task) {
@@ -45,8 +46,9 @@ void RunCallback(const FunctionCallbackInfo<Value>& args) {
 	uv_work_t* task = new uv_work_t();
 	task ->data = req;
 
-	// uncomment this to make the addon callback synchronously
-	// return AfterAsync(task);
+	// uncomment these to make the addon callback synchronously
+	//DoAsync(task);
+	//return AfterAsync(task);
 
 	uv_queue_work(uv_default_loop(),
                  task,

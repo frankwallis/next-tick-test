@@ -1,12 +1,16 @@
 var addon = require("./addon");
+var intervalId;
 
 // this fixes it
-// setInterval(function() {
+// intervalId = setInterval(function() {
 // 	console.log(".");
-// }, 1);
+// }, 100);
 
 setTimeout(function() {
 	console.log('timed out')
+	
+	if (intervalId) 
+		clearInterval(intervalId);
 }, 5000);
 
 addon.callAddon(function() {
