@@ -6,14 +6,13 @@
   "private": true,
   "gypfile": true,
   "dependencies": {
-    "bindings": "~1.2.1",
-    "mocha": "^2.3.2"
+    "bindings": "~1.2.1"
   },
   "devDependencies": {
     "node-gyp": "^3.0.1"
   },
   "scripts": {
     "build": "./node_modules/.bin/node-gyp rebuild",
-    "start": "./node_modules/.bin/mocha ./"
+    "start": "node ./index.js"
   }
 }

@@ -15,8 +15,6 @@ void DoAsync (uv_work_t* task) {
 }
 
 void AfterAsync (uv_work_t* task) {
-	printf("callback\n");
-
 	Isolate* isolate = Isolate::GetCurrent();
 	HandleScope scope(isolate);
 
@@ -37,8 +35,6 @@ void AfterAsync (uv_work_t* task) {
 }
 
 void RunCallback(const FunctionCallbackInfo<Value>& args) {
-	printf("calling\n");
-
 	Isolate* isolate = Isolate::GetCurrent();
 	HandleScope scope(isolate);
 
@@ -48,6 +44,9 @@ void RunCallback(const FunctionCallbackInfo<Value>& args) {
 
 	uv_work_t* task = new uv_work_t();
 	task ->data = req;
+
+	// uncomment this to make the addon callback synchronously
+	// return AfterAsync(task);
 
 	uv_queue_work(uv_default_loop(),
                  task,
