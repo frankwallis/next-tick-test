@@ -4,7 +4,7 @@ next-tick-test
 Demonstrate issue with mocha / async addon / nextTick
 
 npm install
-npm build
+npm run build
 npm start
 
 The program should output:
