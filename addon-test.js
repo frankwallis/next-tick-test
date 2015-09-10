@@ -1,16 +1,10 @@
 var addon = require("./addon");
 
-describe('API', () => {
-	it('outputs hello world', (done) => {
- 		addon.callAddon()
-			.then((msg) => {
-				console.log('in then');
-				console.log("got " + msg);
-				done();
-			})
-			.catch((err) => {
-				console.log('in catch');
-				done.fail(err);
-			});
+describe('API', function() {
+	it('outputs hello world', function(done) {
+		addon.callAddon(function() {
+			console.log('after next tick');
+			done();
+		});
 	});
 });
