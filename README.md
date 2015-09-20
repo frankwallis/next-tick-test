@@ -24,3 +24,5 @@ uncommenting the setInterval fixes the issue.
 
 Changing the addon to callback synchronously also fixes the error, it only
 happens when uv-queue-work is used.
+
+UPDATE: it's fixed by using node::MakeCallback.

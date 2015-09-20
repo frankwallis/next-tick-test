@@ -24,8 +24,13 @@ void AfterAsync (uv_work_t* task) {
 	Local<Function> callback = Local<Function>::New(isolate, req ->cb);
 	const unsigned argc = 1;
 	Local<Value> argv[argc] = { String::NewFromUtf8(isolate, "hello world") };
-	callback->Call(isolate->GetCurrentContext()->Global(), argc, argv);
+	
+	// calling it like this means process.nextTick does not fire
+	//callback->Call(isolate->GetCurrentContext()->Global(), argc, argv);
 
+	// calling it like this means process.nextTick DOES fire.
+	MakeCallback(isolate, isolate->GetCurrentContext()->Global(), callback, argc, argv);
+  	
   	// cleanup
   	delete req;
   	delete task;
